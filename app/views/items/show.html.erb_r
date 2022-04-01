@@ -1,0 +1,27 @@
+<p>
+  <strong>Descripcion:</strong>
+<%= @game.description %>
+
+<h2>Anade un comentario:</h2>
+<%= form_for([@game, @game.comments.build]) do |f| %>
+  <p>
+    <%= f.label :mycomment %><br />
+    <%= f.text_area :mycomment %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<h2>Los supercomentarios!</h2>
+<% @game.comments.each do |comment| %>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.mycomment %>
+  </p>
+<% end %>
+
+  <%= link_to 'Volver', games_path %>
+  <%= link_to 'Editar', edit_game_path(@game) %>
+</p>

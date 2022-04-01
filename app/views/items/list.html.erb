@@ -1,0 +1,60 @@
+<%= form_tag request.path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= select_tag :search_combo,
+            options_from_collection_for_select(@systems, "id", "sysname", params[:search_combo])%>
+      Favorito <%= check_box_tag :fav, params[:fav] %>
+      <%= submit_tag "Buscar", :name => nil, :class => "btn btn-info"%>
+    </p>
+
+  <a href="/items/new" class="btn btn-success">Nuevo</a>
+
+  <div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info @items %>
+    </div>
+    <%= will_paginate @items %>
+  </div>
+
+<table style="min-width:200px;">
+  
+  <% @items.each do |item| %>
+  <tr style="max-width:1000px;" >
+    <td>
+      <div style="min-height:35px;"><label><%= item.name %></label></div>
+      <% if item.covers.first %>
+        <div style="max-height:350px;">
+          <%= link_to item_path(item) do %> 
+          <%= image_tag item.covers.first.try(:cover).to_s, :width => "330px", :class => "img-rounded" %>
+          <% end %>
+
+        </div>
+      <% else %>
+          <div style="man-height:550px;"><%= image_tag "sincaratula.gif", :width => "330px" , :class => "img-rounded" %></div>
+      <% end %>
+      <br />
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+
+    </td>
+  </tr>
+
+  <% end %>
+
+</div>
+
+</table>
+
+
+  <div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info @items %>
+    </div>
+    <%= will_paginate @items %>
+  </div>
+
+  <% end %>

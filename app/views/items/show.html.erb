@@ -1,0 +1,74 @@
+<div class="row" style="max-width: 1000px;">
+  <div class="col-md-7 col-sm-8">
+    <% if @item.covers.first %>
+        <%= link_to @item.covers.first.cover.url, id: "cover1", :class => "imagen-pequena" do %>
+        <%= image_tag @item.covers.first.cover.url, :width=> "300px", :class => "img-rounded" %>
+    <% end %>
+    <% else %>
+      <%= image_tag "sincaratula.gif", :width=> "300px", :class => "img-rounded" %>
+    <% end %>
+  </div>
+</br>
+  <div class="col-md-5 col-sm-8">
+    <div><h3><%= @item.name %></h3></div>
+      <p>
+          <strong>Plataforma:</strong>
+          <%= @item.system %>
+        </div>  
+      </p>
+  </div>   
+
+  <div class="col-md-5 col-sm-8">
+      <%= render @item.comments %> <!--  renderiza de la carpeta comments el parcial _comment-->
+      <%= render "comments/form" %> <!--  renderiza de la carpeta comments el parcial _form-->
+  </div>
+ </div>
+
+<div class="row" style="max-width: 1000px;">
+
+</br>
+</br>
+  <div class="col-md-4 col-sm-8">
+  <p>  
+   <% if @item.covers.second %>
+        <%= link_to @item.covers.second.cover.url, id: "cover1", :class => "imagen-pequena" do %>
+        <%= image_tag @item.covers.second.cover.url, :width=> "300px", :class => "img-rounded" %>
+    <% end %>
+    <% else %>
+        <%= image_tag "sincaratula.gif", :width => "300px", :class => "img-rounded" %>
+    <% end %>
+  </p>  
+  </div>
+
+
+  <div class="col-md-4 col-sm-8">
+  <p>
+    <% if @item.covers.third %>
+        <%= link_to @item.covers.third.cover.url, id: "cover1", :class => "imagen-pequena" do %>
+        <%= image_tag @item.covers.third.cover.url, :width=> "300px",:class => "img-rounded" %>
+    <% end %>
+    <% else %>
+        <%= image_tag "sincaratula.gif", :width=> "300px", :class => "img-rounded" %>
+    <% end %>
+  </p>  
+  </div>
+
+  <div class="col-md-4 col-sm-8">
+  <p>  
+    <% if @item.covers.fourth %>
+          <%= link_to @item.covers.fourth.cover.url, id: "cover1", :class => "imagen-pequena" do %>
+          <%= image_tag @item.covers.fourth.cover.url, :width=> "300px", :class => "img-rounded" %>
+    <% end %>
+    <% else %>
+          <%= image_tag "sincaratula.gif", :width=> "300px", :class => "img-rounded" %>
+    <% end %>
+  </p>  
+  </div>
+
+  <div class="col-md-12 col-sm-5" style="text-align: right;">
+  </br>
+    <%= link_to_function "Volver", "history.back()", :class => "btn btn-sucess"%>
+    <%= link_to 'Editar', edit_item_path(@item), :class => "btn btn-warning" %>
+  </div>
+
+</div> 

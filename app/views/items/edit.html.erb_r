@@ -1,0 +1,25 @@
+<h1>Editing games</h1>
+ 
+<%= form_for :game, url: game_path(@game.id),method: :patch do |f| %>
+
+    <% if @game.errors.any? %>
+    <div id="errorExplanation">
+    <h2><%= pluralize(@game.errors.count, "error") %> hicieron que este formulario no se guardara:</h2>
+    <ul>
+    <% @game.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    </div>
+    <% end %>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+ 
+  <p>
+    <%= f.submit "Guardar" %>
+  </p>
+
+  <%= link_to 'Volver', games_path %>
+<% end %>

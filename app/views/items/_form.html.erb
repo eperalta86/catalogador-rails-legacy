@@ -1,0 +1,38 @@
+
+<%= form_for @item , :html => { :multipart => true } do |f| %>
+
+	<% if @item.errors.any? %>
+	<div id="errorExplanation">
+	<h2><%= pluralize(@item.errors.count, "error") %> hicieron que este formulario no se guardara:</h2>
+	<ul>
+	<% @item.errors.full_messages.each do |msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+	</ul>
+	</div>
+	<% end %>
+
+	<div class="row" style="max-width: 800px;">
+		<div class="col-md-3 col-sm-3"><p><label>Nombre</label> </br><%= f.text_field :name%></p> </div>
+	    
+	   	<div class="col-md-3 col-sm-2">
+	    		<label>Plataforma</label></br>
+	    		<%= f.collection_select :system, System.all, :id, :sysname, :prompt => "Seleccione el sistema", :class => "input-large" %>
+	    </div>
+	</div>
+	<div class="row" style="max-width: 800px;">   
+		<div class="col-md-3 col-sm-3"><p> <label>Favorito</label></br><%= f.check_box :favorite, :class => "checkbox"%> </p></div>
+	</div>
+	<div class="row" style="max-width: 800px;">
+		<div class="col-md-5 col-sm-6">
+			<label>Carátulas (Seleccione 1 a 3 imágenes)</label>
+			<%= f.file_field :attachments_array, :multiple => :true %> 
+		</div>	
+	</div>
+	<div class="row" style="max-width: 800px;">
+		<div class="col-md-11 col-sm-11" style="text-align: right;">
+		 	<%= f.submit "Guardar", :class=>"btn btn-primary" %>
+			<%= link_to 'Volver', items_path, :class => "btn btn-success" %>
+		</div>
+	</div>
+<% end %>

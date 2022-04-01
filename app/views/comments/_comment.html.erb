@@ -1,0 +1,7 @@
+<p><%= comment.mycomment %>
+</p>
+<p>
+	<%= link_to 'Borrar comentario', [comment.item, comment],
+               method: :delete,
+               data: { confirm: 'Estas seguro?' }, :class => "btn btn-primary" %>
+ </p>
